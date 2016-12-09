@@ -2,8 +2,9 @@
 
 var winston = module.parent.require('winston'),
     Meta = module.parent.require('./meta'),
-    nodemailer = require('nodemailer'),
-    smtpTransport = require('nodemailer-smtp-transport'),
+    sendinblue = require('sendinblue-api'),
+    // nodemailer = require('nodemailer'),
+    // smtpTransport = require('nodemailer-smtp-transport'),
     Emailer = {};
 
 var settings = {};
@@ -28,15 +29,11 @@ Emailer.init = function(data, callback) {
 
 Emailer.send = function(data, callback) {
 
-    var smtpConfig = {
-        host: settings['emailer:local:host'],
-        port: settings['emailer:local:port'],
-        secure: settings['emailer:local:secure'],
-        auth: {
-            user: settings['emailer:local:username'],
-            pass: settings['emailer:local:password'],
-        },
+    var parameters = {
+        apiKey: settings['emailer:local:apikey'],
+        timeout: settings['emailer:local:timeout']
     };
+
     var mailOptions = {
         from: data.from,
         to: data.to,
@@ -44,15 +41,10 @@ Emailer.send = function(data, callback) {
         text: data.plaintext,
         subject: data.subject
     };
-    var transporter = nodemailer.createTransport(smtpConfig);
+    var sendinObj = new sendinblue(parameters);
 
-    transporter.sendMail(mailOptions, function(err) {
-        if ( !err ) {
-            winston.info('[emailer.smtp] Sent `' + data.template + '` email to uid ' + data.uid);
-        } else {
-            winston.warn('[emailer.smtp] Unable to send `' + data.template + '` email to uid ' + data.uid + '!');
-        }
-        callback(err, data);
+    sendinObj.send_email(mailOptions).on('complete', function(success) {
+        winston.info('[emailer.smtp] Sent `' + data.template + '` email to uid ' + data.uid);
     });
 };
 
@@ -61,7 +53,7 @@ Emailer.admin = {
         custom_header.plugins.push({
             "route": '/emailers/local',
             "icon": 'fa-envelope-o',
-            "name": 'Emailer SMTP'
+            "name": 'Emailer SendInBlue'
         });
 
         callback(null, custom_header);

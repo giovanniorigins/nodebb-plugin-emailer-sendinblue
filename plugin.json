@@ -1,8 +1,8 @@
 {
-    "id": "nodebb-plugin-emailer-smtp",
-    "url": "https://github.com/Danor/nodebb-plugin-emailer-smtp",
-    "name": "Emailer SMTP",
-    "description": "Plugin for NodeBB allowing you to send e-mail via SMTP.",
+    "id": "nodebb-plugin-emailer-sendinblue",
+    "url": "https://github.com/giovanniorigins/nodebb-plugin-emailer-sendinblue",
+    "name": "Emailer SendinBlue API",
+    "description": "Plugin for NodeBB allowing you to send e-mail via SendInBlue V2 API.",
     "library": "./index.js",
     "templates": "./templates",
     "hooks": [

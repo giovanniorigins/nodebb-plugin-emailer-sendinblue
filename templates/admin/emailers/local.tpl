@@ -1,9 +1,9 @@
-<h1><i class="fa fa-envelope-o"></i> Emailer SMTP</h1>
+<h1><i class="fa fa-envelope-o"></i> Emailer SendInBlue API</h1>
 
 <div class="row">
 	<div class="col-lg-12">
 		<blockquote>
-			Plugin for NodeBB allowing you to send e-mail via SMTP.
+			Plugin for NodeBB allowing you to send e-mail via SendInBlue V2 API.
 		</blockquote>
 	</div>
 </div>
@@ -15,36 +15,19 @@
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="form-group">
-					<label for="emailer:local:host">Host</label>
-					<input type="text" class="form-control" id="emailer:local:host" name="emailer:local:host" />
+					<label for="emailer:local:apikey">Api Key</label>
+					<input type="text" class="form-control" id="emailer:local:apikey" name="emailer:local:apikey" />
+					<span class="help-block">You can find this or create a new one at <a href="https://account.sendinblue.com/advanced/api/">https://account.sendinblue.com/advanced/api/</a></span>
 				</div>
 			</div>
 			<div class="col-sm-12">
 				<div class="form-group">
-					<label for="emailer:local:port">Port</label>
-					<input type="text" class="form-control" value="25" id="emailer:local:port" name="emailer:local:port" />
+					<label for="emailer:local:timeout">Timeout</label>
+					<input type="number" class="form-control" value="5000" id="emailer:local:timeout" name="emailer:local:timeout" />
+					<span class="help-block">(Optional) Timeout in MS</span>
 				</div>
 			</div>
-			<div class="col-sm-12">
-				<div class="form-group">
-					<label for="emailer:local:username">User</label>
-					<input type="text" class="form-control" id="emailer:local:username" name="emailer:local:username" />
-				</div>
-			</div>
-			<div class="col-sm-12">
-				<div class="form-group">
-					<label for="emailer:local:password">Password</label>
-					<input type="password" class="form-control" id="emailer:local:password" name="emailer:local:password" />
-				</div>
-			</div>
-			<div class="col-sm-12">
-				<div class="form-group">
-					<label>
-						<input type="checkbox" id="emailer:local:secure" name="emailer:local:secure"/>
-						 Enable secure connection
-					</label>
-				</div>
-			</div>
+
 		</div>
 
 		<button class="btn btn-lg btn-primary" id="save">Save</button>

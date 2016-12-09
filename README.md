@@ -1,2 +1,3 @@
-# nodebb-plugin-emailer-smtp
-Plugin for NodeBB allowing you to send e-mail via SMTP.
+# nodebb-plugin-emailer-sendinblue
+Plugin for NodeBB allowing you to send e-mail via SinInBlue V2 API.
+
