@@ -43,11 +43,14 @@ Emailer.send = function(data, callback) {
 
     sendinObj.send_email(mailOptions, function(err, response){
         if ( !err ) {
+            if (response.code !== 'success') {
+                winston.info('[emailer.sendinblue] Response: ' + JSON.stringify(response) );
+                winston.info('[emailer.sendinblue] Mail To: ' + JSON.stringify(mailOptions.to) + 'Mail From: ' + JSON.stringify(mailOptions.from));
+            }
             winston.info('[emailer.sendinblue] Sent `' + data.template + '` email to uid ' + data.uid);
         } else {
             winston.warn('[emailer.sendinblue] Unable to send `' + data.template + '` email to uid ' + data.uid + '!');
         }
-        winston.info('[emailer.sendinblue] Status: ' + response.code + ', Message: ' + response.message + ' Data: ' + response.data);
         callback(err, data);
     });
 };
