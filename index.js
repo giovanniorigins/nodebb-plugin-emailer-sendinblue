@@ -33,19 +33,20 @@ Emailer.send = function(data, callback) {
     };
 
     var mailOptions = {
-        from: data.from,
-        to: data.to,
+        from: [data.from, data.from_name],
+        to: {},
         html: data.html,
         text: data.plaintext,
         subject: data.subject
     };
-    var sendinObj = new SendInBlue(parameters);
+    mailOptions.to[data.to] = data.username ? data.username : data.to;
 
+    var sendinObj = new SendInBlue(parameters);
     sendinObj.send_email(mailOptions, function(err, response){
         if ( !err ) {
             if (response.code !== 'success') {
                 winston.info('[emailer.sendinblue] Response: ' + JSON.stringify(response) );
-                winston.info('[emailer.sendinblue] Mail To: ' + JSON.stringify(mailOptions.to) + 'Mail From: ' + JSON.stringify(mailOptions.from));
+                winston.info('[emailer.sendinblue] Mail To: ' + JSON.stringify(mailOptions.to) + ', Mail From: ' + JSON.stringify(mailOptions.from));
             }
             winston.info('[emailer.sendinblue] Sent `' + data.template + '` email to uid ' + data.uid);
         } else {
