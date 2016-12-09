@@ -2,7 +2,7 @@
 
 var winston = module.parent.require('winston'),
     Meta = module.parent.require('./meta'),
-    sendinblue = require('sendinblue-api'),
+    SendInBlue = require('sendinblue-api'),
     Emailer = {};
 
 var settings = {};
@@ -39,14 +39,15 @@ Emailer.send = function(data, callback) {
         text: data.plaintext,
         subject: data.subject
     };
-    var sendinObj = new sendinblue(parameters);
+    var sendinObj = new SendInBlue(parameters);
 
     sendinObj.send_email(mailOptions, function(err, response){
         if ( !err ) {
-            winston.info('[emailer.smtp] Sent `' + data.template + '` email to uid ' + data.uid);
+            winston.info('[emailer.sendinblue] Sent `' + data.template + '` email to uid ' + data.uid);
         } else {
-            winston.warn('[emailer.smtp] Unable to send `' + data.template + '` email to uid ' + data.uid + '!');
+            winston.warn('[emailer.sendinblue] Unable to send `' + data.template + '` email to uid ' + data.uid + '!');
         }
+        winston.info('[emailer.sendinblue] Status: ' + response.code + ', Message: ' + response.message + ' Data: ' + response.data);
         callback(err, data);
     });
 };

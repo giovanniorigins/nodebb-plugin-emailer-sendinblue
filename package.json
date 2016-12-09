@@ -1,6 +1,6 @@
 {
   "name": "nodebb-plugin-emailer-sendinblue",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Plugin for NodeBB allowing you to send e-mail via SendInBlue V2 API.",
   "main": "index.js",
   "scripts": {
