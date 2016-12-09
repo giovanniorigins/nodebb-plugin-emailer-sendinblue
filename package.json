@@ -1,6 +1,6 @@
 {
   "name": "nodebb-plugin-emailer-sendinblue",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Plugin for NodeBB allowing you to send e-mail via SendInBlue V2 API.",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Danor/nodebb-plugin-emailer-sendinblue.git"
+    "url": "git+https://github.com/giovanniorigins/nodebb-plugin-emailer-sendinblue.git"
   },
   "keywords": [
     "nodebb",
@@ -22,9 +22,9 @@
   "author": "Jerez Bain jerezb31@gmail.com",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Danor/nodebb-plugin-emailer-sendinblue/issues"
+    "url": "https://github.com/giovanniorigins/nodebb-plugin-emailer-sendinblue/issues"
   },
-  "homepage": "https://github.com/Danor/nodebb-plugin-emailer-sendinblue#readme",
+  "homepage": "https://github.com/giovanniorigins/nodebb-plugin-emailer-sendinblue#readme",
   "dependencies": {
     "nodemailer": "~2.3.0",
     "sendinblue-api": "^1.0.4",
