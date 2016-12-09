@@ -3,8 +3,6 @@
 var winston = module.parent.require('winston'),
     Meta = module.parent.require('./meta'),
     sendinblue = require('sendinblue-api'),
-    // nodemailer = require('nodemailer'),
-    // smtpTransport = require('nodemailer-smtp-transport'),
     Emailer = {};
 
 var settings = {};
@@ -43,8 +41,13 @@ Emailer.send = function(data, callback) {
     };
     var sendinObj = new sendinblue(parameters);
 
-    sendinObj.send_email(mailOptions).on('complete', function(success) {
-        winston.info('[emailer.smtp] Sent `' + data.template + '` email to uid ' + data.uid);
+    sendinObj.send_email(mailOptions, function(err, response){
+        if ( !err ) {
+            winston.info('[emailer.smtp] Sent `' + data.template + '` email to uid ' + data.uid);
+        } else {
+            winston.warn('[emailer.smtp] Unable to send `' + data.template + '` email to uid ' + data.uid + '!');
+        }
+        callback(err, data);
     });
 };
 
